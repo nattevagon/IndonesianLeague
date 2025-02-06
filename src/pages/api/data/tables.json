@@ -1,0 +1,128 @@
+[
+    {
+        "position": 1,
+        "club": "Borneo FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/192.png",
+        "matches": 27,
+        "points": 56
+    },
+    {
+        "position": 2,
+        "club": "Persebaya Surabaya",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/280.png",
+        "matches": 27,
+        "points": 50
+    },
+    {
+        "position": 3,
+        "club": "Persib Bandung",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/11.png",
+        "matches": 27,
+        "points": 49
+    },
+    {
+        "position": 4,
+        "club": "Persija Jakarta",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/12.png",
+        "matches": 27,
+        "points": 56
+    },
+    {
+        "position": 5,
+        "club": "Bali United FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/71.png",
+        "matches": 27,
+        "points": 48
+    },
+    {
+        "position": 6,
+        "club": "Arema FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/32.png",
+        "matches": 27,
+        "points": 48
+    },
+    {
+        "position": 7,
+        "club": "Malut United FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/1819851379.png",
+        "matches": 27,
+        "points": 46
+    },
+    {
+        "position": 8,
+        "club": "PSBS Biak",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/181.png",
+        "matches": 27,
+        "points": 46
+    },
+    {
+        "position": 9,
+        "club": "PSS Sleman",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/23.png",
+        "matches": 27,
+        "points": 40
+    },
+    {
+        "position": 10,
+        "club": "PSM Makassar",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/50.png",
+        "matches": 27,
+        "points": 40
+    },
+    {
+        "position": 11,
+        "club": "Dewa United FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/209.png",
+        "matches": 27,
+        "points": 36
+    },
+    {
+        "position": 12,
+        "club": "PSIS Semarang",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/20.png",
+        "matches": 27,
+        "points": 30
+    },
+    {
+        "position": 13,
+        "club": "Persita Tangerang",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/15.png",
+        "matches": 27,
+        "points": 28
+    },
+    {
+        "position": 14,
+        "club": "Persik Kediri",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/37.png",
+        "matches": 27,
+        "points": 15
+    },
+    {
+        "position": 15,
+        "club": "Persis Solo",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/67.png",
+        "matches": 27,
+        "points": 14
+    },
+    {
+        "position": 16,
+        "club": "Madura United FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/40.png",
+        "matches": 27,
+        "points": 14
+    },
+    {
+        "position": 17,
+        "club": "PS Barito Putera",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/133.png",
+        "matches": 27,
+        "points": 12
+    },
+    {
+        "position": 18,
+        "club": "Semen Padang FC",
+        "logo": "https://assets.ligaindonesiabaru.com/uploads/images/logo/81/h/50/5.png",
+        "matches": 27,
+        "points": 10
+    }
+]
