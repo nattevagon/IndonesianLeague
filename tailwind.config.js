@@ -15,9 +15,12 @@ module.exports = {
   theme: {
     container: {
       center: true, // Center the container by default
-      padding: '4rem', // Add default padding
+      padding: {
+        DEFAULT: '2rem', // Default padding untuk semua breakpoint
+        md: '4rem', // Padding khusus untuk breakpoint md (768px)
+      },
       screens: {
-        sm: '740px',
+        sm: '640px',
         md: '768px',
         lg: '1024px',
         xl: '1280px',
