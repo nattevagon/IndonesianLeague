@@ -1,7 +1,8 @@
+import React, { useEffect, useState } from 'react'
 import Modal from "@/components/atoms/Modal"
 import Image from "next/image"
 import Link from "next/link"
-import React, { useEffect, useState } from 'react'
+import { Bars3Icon } from "@heroicons/react/20/solid"
 
 function Navigation() {
   const clubs = [
@@ -119,7 +120,7 @@ function Navigation() {
 
   return (
     <div className="w-full">
-      <div id="topTeamsList" className="bg-[#262624] w-full h-16 flex items-center justify-center">
+      <div id="topTeamsList" className="bg-[#262624] w-full h-16 hidden lg:flex items-center justify-center hidden">
         {clubs.map(item => (
           <Link
             href={item.url}
@@ -145,7 +146,7 @@ function Navigation() {
               height={100}
               alt="LeagueLogo"
             />
-            <div className="text-white py-4">
+            <div className="hidden lg:flex text-white py-4">
               <Link
                 href={'/'}
                 className="mx-2 text-[18px]"
@@ -271,12 +272,10 @@ function Navigation() {
             </div>
           </div>
           <div className="flex items-center">
-            <button
+            <Bars3Icon
               onClick={() => setLoginModal(true)}
-              className="bg-white text-[#034C8C] px-4 py-2 hover:opacity-80"
-            >
-              Sign-in
-            </button>
+              className="w-[2rem] lg:hidden h-[2rem] cursor-pointer text-white"
+            />
             {/* <Image
               className={"invert brightness-0 mb-2 ml-4" + (isTopTeamsList ? ' mt-[-50px] w-[68px] drop-shadow-[0_1px_4px_rgba(0,0,1,1)]' : ' mt-2 w-[40px]') + " transition-all duration-100 ease-in-out"}
               src={'https://assets.ligaindonesiabaru.com/uploads/images/logo/lib-2022.png'}

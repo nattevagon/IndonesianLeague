@@ -42,7 +42,8 @@ const FirstLeagueTables = () => {
 												width={28}
 												height={28}
 											/>
-											<div>{item.club}</div>
+											<div className="hidden md:inline">{item.club}</div>
+											<div className="md:hidden">{item.code}</div>
 										</div>
 									</td>
 									<td>{item.matches}</td>

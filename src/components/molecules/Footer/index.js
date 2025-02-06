@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="container bg-[#034C8C] flex py-8">
+    <div className="container bg-[#034C8C] flex items-center py-8">
       <footer className="footer text-white p-4">
         <nav>
           <h6 className="footer-title">Services</h6>
@@ -29,8 +29,8 @@ const Footer = () => {
       <Image
         className="invert brightness-0 mb-2 ml-4"
         src={'https://assets.ligaindonesiabaru.com/uploads/images/logo/lib-2022.png'}
-        width={100}
-        height={100}
+        width={80}
+        height={80}
         alt="LeagueLogo"
       />
     </div>

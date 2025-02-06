@@ -9,13 +9,13 @@ import React, { useState } from 'react';
 
 const Home = () => {
   return (
-    <div className="container overflow-auto text-white py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <div className="col-span-1 w-full flex flex-col gap-6">
+    <div className="container overflow-auto text-white py-8 pt-24 lg:pt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-12">
+        <div className="col-span-1 w-full flex flex-col gap-6 mb-12">
           <MatchweekToday />
           <FirstLeagueTables />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 row-[1] md:row-auto">
           <div>
             <HomeBanner />
           </div>
