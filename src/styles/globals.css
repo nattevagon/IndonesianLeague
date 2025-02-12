@@ -11,3 +11,8 @@
 body {
     font-family: "Kanit", serif;
 }
+
+html:has(.drawer-toggle:checked) {
+    overflow-y: hidden;
+    scrollbar-gutter: auto;
+}

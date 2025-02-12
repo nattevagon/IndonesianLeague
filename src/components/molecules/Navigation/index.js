@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Modal from "@/components/atoms/Modal"
 import Image from "next/image"
 import Link from "next/link"
-import { Bars3Icon } from "@heroicons/react/20/solid"
+import NavigationDrawer from "../MobileDrawer"
 
 function Navigation() {
   const clubs = [
@@ -272,10 +272,6 @@ function Navigation() {
             </div>
           </div>
           <div className="flex items-center">
-            <Bars3Icon
-              onClick={() => setLoginModal(true)}
-              className="w-[2rem] lg:hidden h-[2rem] cursor-pointer text-white"
-            />
             {/* <Image
               className={"invert brightness-0 mb-2 ml-4" + (isTopTeamsList ? ' mt-[-50px] w-[68px] drop-shadow-[0_1px_4px_rgba(0,0,1,1)]' : ' mt-2 w-[40px]') + " transition-all duration-100 ease-in-out"}
               src={'https://assets.ligaindonesiabaru.com/uploads/images/logo/lib-2022.png'}
@@ -284,6 +280,7 @@ function Navigation() {
               alt="LeagueLogo"
             /> */}
           </div>
+          <NavigationDrawer />
         </div>
       </div>
       <Modal isOpen={isLoginModal} onClose={() => setLoginModal(false)}>
