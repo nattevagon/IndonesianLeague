@@ -3,8 +3,11 @@ import Modal from "@/components/atoms/Modal"
 import Image from "next/image"
 import Link from "next/link"
 import NavigationDrawer from "../MobileDrawer"
+import { A11y, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-function Navigation() {
+function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
   const clubs = [
     {
       "pathname": "arema",
@@ -97,7 +100,6 @@ function Navigation() {
       "url": "http://www.aremafc.com/"
     }
   ]
-  const [isTopTeamsList, setTopTeamsList] = useState(true)
   const [isLoginModal, setLoginModal] = useState(false);
 
   useEffect(() => {
@@ -106,10 +108,10 @@ function Navigation() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          setTopTeamsList(false)
+          onSetTopTeamsList(false)
           console.log('Element is NOT visible in the viewport');
         } else {
-          setTopTeamsList(true)
+          onSetTopTeamsList(true)
           console.log('Element is visible in the viewport');
         }
       });
@@ -120,7 +122,7 @@ function Navigation() {
 
   return (
     <div className="w-full">
-      <div id="topTeamsList" className="bg-[#262624] w-full h-16 hidden lg:flex items-center justify-center hidden">
+      {/* <div id="topTeamsList" className="bg-[#262624] w-full h-16 hidden lg:flex items-center justify-center">
         {clubs.map(item => (
           <Link
             href={item.url}
@@ -135,6 +137,39 @@ function Navigation() {
             />
           </Link>
         ))}
+      </div> */}
+      <div id="topTeamsList" className="bg-[#262624] w-full hidden lg:block">
+        <div className="container">
+          <div className="flex items-center justify-center lg:px-[60px] xl:px-[160px]">
+            <Swiper
+              className="w-full z-[0]"
+              modules={[Autoplay, A11y]}
+              slidesPerView={16}
+              loop={true}
+              autoplay={{
+                delay: 1000,
+                disableOnInteraction: false,
+              }}
+            >
+              {clubs.map(item => (
+                <SwiperSlide>
+                  <Link
+                    href={item.url}
+                    className="w-[50px] h-[50px] mx-2 flex justify-center items-center"
+                  >
+                    <Image
+                      className="w-[32px] h-[32px] hover:w-[40px] hover:h-[40px] transition-all duration-100 ease-in-out"
+                      src={item.logo}
+                      alt="Club"
+                      width={40}
+                      height={40}
+                    />
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
       </div>
       <div className={"bg-[#034C8C] w-full z-[2]" + (isTopTeamsList ? '' : ' fixed top-0')}>
         <div className="container flex items-center justify-between">
@@ -227,7 +262,7 @@ function Navigation() {
                     <Link
                       href={'/'}
                     >
-                      <div className="w-full p-4 hover:bg-[#161616]">U20 Liga 1</div>
+                      <div className="w-full p-4 hover:bg-[#161616]">U-20 Liga 1</div>
                     </Link>
                     <Link
                       href={'/'}
@@ -295,4 +330,4 @@ function Navigation() {
   )
 }
 
-export default Navigation
+export default NavigationSection

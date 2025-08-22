@@ -1,12 +1,22 @@
+import { useState } from "react";
 import Footer from "@/components/molecules/Footer";
-import Navigation from "@/components/molecules/Navigation";
+import NavigationSection from "@/components/molecules/NavigationSection";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
+  const [isTopTeamsList, setTopTeamsList] = useState(true)
+
   return (
     <div>
-      <Navigation />
-      <Component {...pageProps} />
+      <NavigationSection
+        isTopTeamsList={isTopTeamsList}
+        onSetTopTeamsList={(value) => setTopTeamsList(value)}
+      />
+      <div className={isTopTeamsList ? "" : "lg:pt-[64px]"}>
+        <Component
+          {...pageProps}
+        />
+      </div>
       <Footer />
     </div>
   );
