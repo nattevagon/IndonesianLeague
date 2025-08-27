@@ -2,7 +2,9 @@ import React from 'react'
 import Image from "next/image"
 import TeamsLayout from "@/components/molecules/TeamsLayout"
 
-const Squad = () => {
+const Squad = ({ teamDetail }) => {
+  console.log('Index Squad', teamDetail)
+
   return (
     <TeamsLayout>
       <div className="text-white">

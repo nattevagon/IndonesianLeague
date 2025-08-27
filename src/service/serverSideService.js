@@ -10,7 +10,7 @@ const Axios = (url = null) => {
         || process.env.NODE_ENV === 'prelive'
         || process.env.NODE_ENV === 'uat'
     ) {
-        instance.defaults.baseURL = 'http://localhost:7001';
+        instance.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`;
     }
     instance.defaults.headers.common['Content-Type'] = 'application/json';
 

@@ -12,6 +12,7 @@ const Home = () => {
     <div className="container overflow-auto text-white py-8 pt-24 lg:pt-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-12">
         <div className="col-span-1 w-full flex flex-col gap-6 mb-12">
+          <h1>{process.env.NEXT_PUBLIC_APP_NAME}</h1>
           <MatchweekToday />
           <FirstLeagueTables />
         </div>

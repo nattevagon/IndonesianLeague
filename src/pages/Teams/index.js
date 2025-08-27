@@ -1,9 +1,12 @@
 import Image from "next/image"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Squad from "./Squad"
 import TeamsLayout from "@/components/molecules/TeamsLayout"
+import { Services } from "@/service"
 
-const Teams = () => {
+const Teams = ({ teamDetail }) => {
+  console.log('Index', teamDetail)
+
   return (
     <TeamsLayout>
       <div className="mt-4">
