@@ -1,23 +1,20 @@
-import { useState } from "react";
-import Footer from "@/components/molecules/Footer";
-import NavigationSection from "@/components/molecules/NavigationSection";
+import MainLayout from "@/components/layouts/MainLayout";
+import AdminLayout from "@/components/layouts/AdminLayout";
+import { useRouter } from "next/router";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  const [isTopTeamsList, setTopTeamsList] = useState(true)
+  const router = useRouter();
+  const isAdmin= router.pathname.startsWith("/admin");
 
-  return (
-    <div>
-      <NavigationSection
-        isTopTeamsList={isTopTeamsList}
-        onSetTopTeamsList={(value) => setTopTeamsList(value)}
-      />
-      <div className={isTopTeamsList ? "" : "lg:pt-[64px]"}>
-        <Component
-          {...pageProps}
-        />
-      </div>
-      <Footer />
-    </div>
-  );
+  const getLayout =
+    Component.getLayout ||
+    ((page) =>
+      isAdmin? (
+        <AdminLayout>{page}</AdminLayout>
+      ) : (
+        <MainLayout>{page}</MainLayout>
+      ));
+
+  return getLayout(<Component {...pageProps} />);
 }

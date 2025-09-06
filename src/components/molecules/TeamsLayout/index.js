@@ -32,7 +32,7 @@ const TeamsLayout = ({ children }) => {
             height={200}
             alt="Club"
           />
-          <div className="text-white">
+          <div className="text-primary-black dark:text-primary-white">
             <div className="font-bold text-[40px]">{teamDetail?.name}</div>
             <div className="text-[16px]">Est. {teamDetail?.founded_year} - {teamDetail?.city}</div>
           </div>
@@ -49,10 +49,10 @@ const TeamsLayout = ({ children }) => {
       </div>
       <div className="container bg-[#161616] py-8">
         <div className="flex items-center gap-4">
-          <Link href={'/Teams'}>
+          <Link href={'/teams'}>
             <div className="bg-white py-2 px-4 flex items-center text-black hover:opacity-80">Overview</div>
           </Link>
-          <Link href={'/Teams/Squad'}>
+          <Link href={'/teams/squad'}>
             <div className="bg-white py-2 px-4 flex items-center text-black hover:opacity-80">Squad</div>
           </Link>
         </div>

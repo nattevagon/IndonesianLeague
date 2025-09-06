@@ -6,7 +6,7 @@ const FirstLeagueTables = () => {
 	const [tablesData, setTablesData] = useState([])
 
 	useEffect(() => {
-		Services('http://localhost:7001')
+		Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
 			.get(`/api/first-league/tables`)
 			.then((getResponse) => {
 				const response = getResponse.data
@@ -17,7 +17,7 @@ const FirstLeagueTables = () => {
 
 	return (
 		<div className="z-[0]">
-			<div className="bg-[#034C8C] text-white text-[28px] font-medium text-center p-2">BRI Liga 1 Tables</div>
+			<div className="bg-primary-blue text-primary-black dark:text-primary-white text-[28px] font-medium text-center p-2">BRI Liga 1 Tables</div>
 			<div className="overflow-x-hidden bg-[#262624]">
 				<table className="table">
 					<thead className="border-b-[1px] border-[#161616]">

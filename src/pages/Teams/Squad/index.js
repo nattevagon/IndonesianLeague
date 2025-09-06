@@ -7,7 +7,7 @@ const Squad = ({ teamDetail }) => {
 
   return (
     <TeamsLayout>
-      <div className="text-white">
+      <div className="text-primary-black dark:text-primary-white">
         <div className="mt-4">
           <div className="text-[32px] mb-4">Goalkeepers</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -29,7 +29,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">1</div>
                 <div className="px-2">ANGGA .S</div>
               </div>
@@ -60,7 +60,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">25</div>
                 <div className="px-2">NADEO WINATA</div>
               </div>
@@ -91,7 +91,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">63</div>
                 <div className="px-2">DAFFA FASYA</div>
               </div>
@@ -127,7 +127,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">2</div>
                 <div className="px-2">RONALDO</div>
               </div>
@@ -158,7 +158,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">5</div>
                 <div className="px-2">G. FURTADO</div>
               </div>
@@ -189,7 +189,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">6</div>
                 <div className="px-2">IKHSAN NUL</div>
               </div>
@@ -220,7 +220,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">6</div>
                 <div className="px-2">IKHSAN NUL</div>
               </div>
@@ -251,7 +251,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">6</div>
                 <div className="px-2">IKHSAN NUL</div>
               </div>
@@ -282,7 +282,7 @@ const Squad = ({ teamDetail }) => {
                 />
               </div>
 
-              <div className="bg-[#034C8C] w-full text-[24px] flex items-center">
+              <div className="bg-primary-blue w-full text-[24px] flex items-center">
                 <div className="bg-white px-3 text-black">6</div>
                 <div className="px-2">IKHSAN NUL</div>
               </div>

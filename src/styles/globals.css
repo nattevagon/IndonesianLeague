@@ -1,18 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@tailwind base;
+@import "react-calendar/dist/Calendar.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Default (Light mode) */
 :root {
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
 }
 
 body {
     font-family: "Kanit", serif;
 }
 
+/* Drawer fix */
 html:has(.drawer-toggle:checked) {
     overflow-y: hidden;
     scrollbar-gutter: auto;
+}
+
+/* --- Base calendar --- */
+.react-calendar {
+    font-family: "Kanit", serif;
+    
+    @apply max-w-[500px] border shadow-sm;
+    @apply bg-secondary-white text-primary-black border-third-white;
+    /* Light mode */
+}
+
+.dark .react-calendar {
+    @apply bg-secondary-black text-primary-white border-third-black;
+    /* Dark mode */
+}
+
+/* --- Navigation (bulan & tahun atas) --- */
+.react-calendar__navigation {
+    @apply flex items-center justify-between p-2;
+}
+
+.react-calendar__navigation button,
+.react-calendar__navigation__label {
+    @apply text-sm font-medium px-2 py-1 rounded-none bg-secondary-white hover:bg-third-white text-primary-black focus:bg-secondary-white;
+}
+
+.dark .react-calendar__navigation button,
+.react-calendar__navigation__label {
+    @apply text-sm font-medium px-2 py-1 rounded-none bg-secondary-black hover:bg-primary-black text-primary-white focus:bg-secondary-black;
+}
+
+.react-calendar__year-view .react-calendar__tile {
+    @apply text-sm font-medium px-4 py-2;
+}
+
+.dark .react-calendar__year-view .react-calendar__tile {
+    @apply text-sm font-medium px-4 py-2;
+}
+
+/* --- Days (Sun–Sat header) --- */
+.react-calendar__month-view__weekdays {
+    @apply text-xs uppercase font-semibold text-primary-black dark:text-primary-white;
+}
+
+.dark .react-calendar__month-view__weekdays {
+    @apply text-primary-black dark:text-primary-white;
+}
+
+/* --- Tile (setiap tanggal) --- */
+.react-calendar__tile {
+    @apply text-sm rounded-none p-2 bg-secondary-white hover:bg-primary-white text-primary-black transition-colors;
+}
+
+.dark .react-calendar__tile {
+    @apply text-sm rounded-none p-2 bg-secondary-black hover:bg-primary-black text-primary-white transition-colors;
+}
+
+/* Selected day */
+/* Light mode */
+.react-calendar__tile.react-calendar__tile--active,
+.react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active {
+  @apply bg-third-white text-primary-black hover:bg-third-white font-bold;
+}
+
+/* Dark mode */
+.dark .react-calendar__tile.react-calendar__tile--active,
+.dark .react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active {
+  @apply bg-primary-black text-primary-white hover:bg-primary-black font-bold;
+}
+
+/* Today */
+.react-calendar__tile--now {
+    @apply bg-secondary-white text-secondary-black hover:bg-primary-white;
+}
+
+.dark .react-calendar__tile--now {
+    @apply bg-secondary-black hover:bg-primary-white text-primary-white;
+}
+
+.react-calendar__tile.react-calendar__tile--now {
+    @apply bg-secondary-white text-secondary-black hover:bg-fourth-white;
+}
+
+.dark .react-calendar__tile.react-calendar__tile--now {
+    @apply bg-secondary-black text-primary-white hover:bg-primary-black;
+}
+
+/* Disabled */
+.react-calendar__tile:disabled {
+    @apply text-secondary-black bg-primary-white cursor-not-allowed;
+}
+
+.dark .react-calendar__tile:disabled {
+    @apply text-secondary-black bg-secondary-black;
 }

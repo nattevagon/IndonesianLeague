@@ -13,6 +13,27 @@ module.exports = {
     unoptimized: true,
   },
   theme: {
+    extend: {
+      colors: {
+        primary: {
+          "white": "#F8F8F8",
+          "black": "#161616",
+          "blue": "#185494"
+        },
+        secondary: {
+          "white": "#F3F3F3",
+          "black": "#272625",
+          "blue": "#134376",
+        },
+        third: {
+          "white": "#C6C6C6",
+          "black": "#575757",
+        },
+        fourth: {
+          "white": "#E7E7E7",
+        }
+      },
+    },
     container: {
       center: true, // Center the container by default
       padding: {
@@ -29,4 +50,5 @@ module.exports = {
     },
   },
   plugins: [require('daisyui')],
+  darkMode: "class"
 };

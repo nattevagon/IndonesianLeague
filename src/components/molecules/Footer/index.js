@@ -3,8 +3,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="container bg-[#034C8C] flex items-center py-8 m-0 w-full max-w-none">
-      <footer className="footer text-white p-4">
+    <div className="container bg-primary-blue flex items-center py-8 m-0 w-full max-w-none">
+      <footer className="footer text-primary-black dark:text-primary-white p-4">
         <nav>
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>

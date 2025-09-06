@@ -1,7 +1,7 @@
 import { serverSideService } from "@/service/serverSideService";
 
-const getAction = async (pathAPI, params, config) => {
-    const { data } = await serverSideService().get(pathAPI, params, config);
+const deleteAction = async (pathAPI, params, config) => {
+    const { data } = await serverSideService().delete(pathAPI, params, config);
     console.log("CALL API:", pathAPI, params, config);
 
     return data;
@@ -15,7 +15,7 @@ const loadData = async (req, res, generatePathAPI) => {
     };
 
     try {
-        const data = await getAction(generatePathAPI, params, { headers });
+        const data = await deleteAction(generatePathAPI, params, { headers });
         res.status(200).json(data);
     } catch (error) {
         console.error("API ERROR:", error?.response?.data || error.message);
@@ -31,9 +31,9 @@ const handler = async (req, res) => {
         return;
     }
 
-    if (req.method === "GET") {
+    if (req.method === "DELETE") {
         const { path } = req.query;
-        const generatePathAPI = `/${path.join("/")}`; // contoh: /teams/1
+        const generatePathAPI = `/${path.join("/")}`;
         delete req.query.path;
 
         await loadData(req, res, generatePathAPI);

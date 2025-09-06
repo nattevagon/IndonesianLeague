@@ -1,15 +1,15 @@
-import Modal from "@/components/atoms/Modal";
 import FirstLeagueTables from "@/components/molecules/FirstLeagueTables";
 import HomeBanner from "@/components/molecules/HomeBanner";
 import HomeGallery from "@/components/molecules/HomeGallery";
 import MatchweekToday from "@/components/molecules/MatchweekToday";
+import { Services } from "@/service";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
   return (
-    <div className="container overflow-auto text-white py-8 pt-24 lg:pt-8">
+    <div className="container text-primary-black dark:text-primary-white py-8 pt-24 lg:pt-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-12">
         <div className="col-span-1 w-full flex flex-col gap-6 mb-12">
           <h1>{process.env.NEXT_PUBLIC_APP_NAME}</h1>
@@ -65,7 +65,7 @@ const Home = () => {
             <h1 className="text-2xl font-bold">Matchweek Summary</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 py-2">
               <div className="">
-                <div className="bg-[#034C8C] text-white text-[28px] font-medium text-center p-2">
+                <div className="bg-primary-blue text-primary-black dark:text-primary-white text-[28px] font-medium text-center p-2">
                   Stadium Attendance
                 </div>
                 <div className="text-center bg-[#262624]">
@@ -74,7 +74,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="">
-                <div className="bg-[#034C8C] text-white text-[28px] font-medium text-center p-2">
+                <div className="bg-primary-blue text-primary-black dark:text-primary-white text-[28px] font-medium text-center p-2">
                   Stats
                 </div>
                 <div className="text-center bg-[#262624]">

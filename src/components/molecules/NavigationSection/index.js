@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Modal from "@/components/atoms/Modal"
 import Image from "next/image"
 import Link from "next/link"
 import NavigationDrawer from "../MobileDrawer"
@@ -151,8 +150,8 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
                 disableOnInteraction: false,
               }}
             >
-              {clubs.map(item => (
-                <SwiperSlide>
+              {clubs.map((item, i) => (
+                <SwiperSlide key={i}>
                   <Link
                     href={item.url}
                     className="w-[50px] h-[50px] mx-2 flex justify-center items-center"
@@ -171,7 +170,7 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
           </div>
         </div>
       </div>
-      <div className={"bg-[#034C8C] w-full z-[2]" + (isTopTeamsList ? '' : ' fixed top-0')}>
+      <div className={"bg-primary-blue w-full z-[2]" + (isTopTeamsList ? '' : ' fixed top-0')}>
         <div className="container flex items-center justify-between">
           <div className="flex items-center">
             <Image
@@ -181,7 +180,7 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
               height={100}
               alt="LeagueLogo"
             />
-            <div className="hidden lg:flex text-white py-4">
+            <div className="hidden lg:flex text-primary-black dark:text-primary-white py-4">
               <Link
                 href={'/'}
                 className="mx-2 text-[18px]"
@@ -221,19 +220,19 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
                 </div>
               </div>
               <Link
-                href={'/Schedule'}
+                href={'/schedule'}
                 className="mx-2 text-[18px]"
               >
                 Schedule
               </Link>
               <Link
-                href={'/Tables'}
+                href={'/tables'}
                 className="mx-2 text-[18px]"
               >
                 Tables
               </Link>
               <Link
-                href={'/Teams'}
+                href={'/teams'}
                 className="mx-2 text-[18px]"
               >
                 Teams
@@ -318,14 +317,14 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
           <NavigationDrawer />
         </div>
       </div>
-      <Modal isOpen={isLoginModal} onClose={() => setLoginModal(false)}>
+      {/* <Modal isOpen={isLoginModal} onClose={() => setLoginModal(false)}>
         <button
           onClick={() => setLoginModal(false)}
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="mt-4 px-4 py-2 bg-red-500 text-primary-black dark:text-primary-white rounded hover:bg-red-600"
         >
           Close Modal
         </button>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }

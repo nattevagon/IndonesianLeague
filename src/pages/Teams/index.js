@@ -1,6 +1,5 @@
 import Image from "next/image"
 import React, { useEffect, useState } from 'react'
-import Squad from "./Squad"
 import TeamsLayout from "@/components/molecules/TeamsLayout"
 import { Services } from "@/service"
 

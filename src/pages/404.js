@@ -8,4 +8,9 @@ const NotFound = () => {
   )
 }
 
+NotFound.getLayout = function getLayout(page) {
+  return <div>{page}</div>;
+};
+
+
 export default NotFound
