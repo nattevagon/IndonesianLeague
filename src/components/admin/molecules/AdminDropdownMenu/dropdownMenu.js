@@ -1,8 +1,8 @@
 import React from "react";
 
-const AdminDropdownMenu = ({ children }) => {
+const AdminDropdownMenu = ({ children, position }) => {
   return (
-    <div className="dropdown dropdown-left dropdown-center">
+    <div className={"dropdown" + (position ? ' ' + position : '')}>
       {children}
     </div>
   );

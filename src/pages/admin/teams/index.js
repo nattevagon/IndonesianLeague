@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import AdminTableLayout from "@/components/admin/molecules/AdminTableLayout"
 import { Services } from "@/service"
-import useModalStore from "@/store/useModalStore"
-import { ArrowLeftStartOnRectangleIcon, EllipsisVerticalIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid"
+import { EllipsisVerticalIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import AdminTableLayout from "@/components/admin/molecules/AdminTableLayout"
 import {
-  AdminDropdownMenu,
   AdminDropdownButton,
   AdminDropdownContent,
-  AdminDropdownItem
+  AdminDropdownItem,
+  AdminDropdownMenu
 } from "@/components/admin/molecules/AdminDropdownMenu"
 import {
   Table,
@@ -19,48 +18,44 @@ import {
   TableHeaderCell,
   TableCell,
 } from "@/components/admin/atoms/Table"
-import { useUserActions } from "@/utils/admin/userActions"
+import { useTeamActions } from "@/utils/admin/teamActions"
 
-const UsersTrash = () => {
+const Teams = () => {
   const router = useRouter();
   const { query, pathname } = router;
   // const [page, setPage] = useState(1);
-  const backPath = pathname.split("/").slice(0, 3).join("/");
   const [filter, setFilter] = useState({
-    role: [
-      { value: 0, label: "User", checked: false },
-      { value: 1, label: "Admin", checked: false },
-      { value: 2, label: "Super Admin", checked: false }
-    ]
-  })
+    competitionId: []
+  });
   const [search, setSearch] = useState("");
   const [isLoadingPage, setLoadingPage] = useState(false);
-  const [usersData, setUsersData] = useState([])
-  const [usersDataPagination, setUsersDataPagination] = useState({});
-  const { handleRestore, handleHardDelete, handleRole } = useUserActions(router);
+  const [teamsData, setTeamsData] = useState([])
+  const [teamsDataPagination, setTeamsDataPagination] = useState({});
+  const { handleSoftDelete, handleCompetitionId } = useTeamActions(router);
+  const adminPath = pathname.split("/").slice(0, 2).join("/");
 
   useEffect(() => {
     const currentPage = query?.page || 1;
     const currentSearch = query?.search || '';
-    const currentRoles = query?.roles || '';
+    const currentCompetitionId = query?.competition_id || '';
 
     setSearch(currentSearch);
-    handleInitialsFilter(currentRoles);
+    handleInitialsFilter(currentCompetitionId);
 
-    handleGetData(currentPage, currentSearch, currentRoles)
-  }, [query?.page, query?.search, query?.roles]);
+    handleGetData(currentPage, currentSearch, currentCompetitionId)
+  }, [query?.page, query?.search, query?.competition_id]);
 
-  const handleGetData = (currentPage, currentSearch, currentRoles) => {
+  const handleGetData = (currentPage, currentSearch, currentCompetitionId) => {
     setLoadingPage(true);
     Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
       .get(
-        `/api/get/users/trash/?limit=10&page=${currentPage}` +
+        `/api/get/teams?limit=10&page=${currentPage}` +
         (currentSearch ? `&search=${currentSearch}` : '') +
-        (currentRoles ? `&roles=${currentRoles}` : '')
+        (currentCompetitionId ? `&competition_id=${currentCompetitionId}` : '')
       )
       .then((res) => {
-        setUsersData(res.data.data);
-        setUsersDataPagination(res.data.pagination);
+        setTeamsData(res.data.data);
+        setTeamsDataPagination(res.data.pagination);
       })
       .catch(console.error)
       .finally(() => setLoadingPage(false));
@@ -76,26 +71,30 @@ const UsersTrash = () => {
     });
   };
 
-  const handleInitialsFilter = (queryRoles) => {
-    if (queryRoles) {
-      const selectedRoles = queryRoles
-        .split(",")
-        .map((v) => Number(v));
+  const handleInitialsFilter = (queryCompetitionId = "") => {
+    setLoadingPage(true);
 
-      setFilter((prev) => ({
-        ...prev,
-        role: prev.role.map((r) => ({
-          ...r,
-          checked: selectedRoles.includes(r.value),
-        })),
-      }));
-    } else {
-      setFilter((prev) => ({
-        ...prev,
-        role: prev.role.map((r) => ({ ...r, checked: false })),
-      }));
-    }
-  }
+    const selectedCompetitionId = queryCompetitionId
+      ? queryCompetitionId.split(",").map(Number)
+      : [];
+
+    Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
+      .get("/api/get/teams/select-option")
+      .then((res) => {
+        const competitionsOption = res.data?.data?.competitions || [];
+
+        const competitionsFilter = competitionsOption.map((c) => ({
+          value: c.id,
+          label: c.name,
+          checked: selectedCompetitionId.includes(c.id),
+        }));
+
+        setFilter({ competitionId: competitionsFilter });
+      })
+      .catch(console.error)
+      .finally(() => setLoadingPage(false));
+  };
+
 
   const handleFilter = (name, value, checked) => {
     setFilter((prev) => ({
@@ -107,20 +106,20 @@ const UsersTrash = () => {
   };
 
   const handleSubmitFilter = () => {
-    const roles = filter.role.filter(r => r.checked).map(r => r.value).join(",");
+    const competitionId = filter.competitionId.filter(r => r.checked).map(r => r.value).join(",");
 
     router.replace({
       pathname,
       query: {
         ...query,
-        roles,
+        competition_id: competitionId,
       },
     });
   }
 
   const handleResetFilter = () => {
     const newQuery = { ...router.query };
-    delete newQuery.roles;
+    delete newQuery.competition_id;
 
     router.replace({
       pathname: pathname,
@@ -128,13 +127,14 @@ const UsersTrash = () => {
     });
   }
 
+  console.log('Router=> ', router)
 
   return (
     <AdminTableLayout
       isLoadingPage={isLoadingPage}
-      dataPagination={usersDataPagination}
-      title="Users Trash List"
-      type="trash"
+      dataPagination={teamsDataPagination}
+      title="Teams List"
+      type="list"
       search={search}
       filter={filter}
       onSearch={(value) => setSearch(value)}
@@ -148,28 +148,41 @@ const UsersTrash = () => {
           <TableRow>
             <TableHeaderCell></TableHeaderCell>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>Email</TableHeaderCell>
-            <TableHeaderCell>Phone</TableHeaderCell>
-            <TableHeaderCell>Role</TableHeaderCell>
+            <TableHeaderCell>Short</TableHeaderCell>
+            <TableHeaderCell>City</TableHeaderCell>
+            <TableHeaderCell>Founded</TableHeaderCell>
+            <TableHeaderCell>Competition</TableHeaderCell>
+            <TableHeaderCell className="flex items-center justify-center">Division</TableHeaderCell>
+            <TableHeaderCell>Coach</TableHeaderCell>
             <TableHeaderCell className="text-center">Action</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {usersData && usersData.length > 0 ? (
-            usersData?.map((user, i) => (
+          {teamsData && teamsData.length > 0 ? (
+            teamsData?.map((item, i) => (
               <TableRow key={i}>
                 <TableCell>{i + 1}</TableCell>
                 <TableCell className="hover:underline">
                   <Link
                     className="p-[4px]"
-                    href={`${backPath}/${user.id}`}
+                    href={`${router.pathname}/${item.id}`}
                   >
-                    {user.name}
+                    {item.team_name}
                   </Link>
                 </TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.phone_number}</TableCell>
-                <TableCell>{handleRole(user.role).name}</TableCell>
+                <TableCell>{item.short_name}</TableCell>
+                <TableCell>{item.city}</TableCell>
+                <TableCell>{item.founded_year}</TableCell>
+                <TableCell className="hover:underline">
+                  <Link
+                    className="p-[4px]"
+                    href={`${adminPath}/competitions/${item.competition_id}`}
+                  >
+                    {item.competition_name}
+                  </Link>
+                </TableCell>
+                <TableCell className="flex items-center justify-center">{item.division}</TableCell>
+                <TableCell>{item.coach_name}</TableCell>
                 <TableCell className="flex items-center justify-center">
                   <AdminDropdownMenu
                     position="dropdown-left dropdown-center"
@@ -179,16 +192,14 @@ const UsersTrash = () => {
                     </AdminDropdownButton>
                     <AdminDropdownContent type="menu" menuClassName="bg-primary-blue">
                       <AdminDropdownItem
-                        icon={ArrowLeftStartOnRectangleIcon}
-                        label="Restore"
-                        onClick={() => handleRestore(user.id, () => {
-                          router.reload();
-                        })}
+                        icon={PencilSquareIcon}
+                        label="Update"
+                        linkUrl={`${router.pathname}/${item.id}/update`}
                       />
                       <AdminDropdownItem
                         icon={TrashIcon}
-                        label="Delete Permanently"
-                        onClick={() => handleHardDelete(user.id, () => {
+                        label="Move to Trash"
+                        onClick={() => handleSoftDelete(item.id, () => {
                           router.reload();
                         })}
                       />
@@ -199,7 +210,7 @@ const UsersTrash = () => {
             ))
           ) : (
             <TableRow>
-              <TableCell colspan={6} className="text-center py-6">
+              <TableCell colspan={8} className="text-center py-6">
                 No data found
               </TableCell>
             </TableRow>
@@ -210,4 +221,4 @@ const UsersTrash = () => {
   )
 }
 
-export default UsersTrash
+export default Teams

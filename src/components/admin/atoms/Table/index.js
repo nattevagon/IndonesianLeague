@@ -24,6 +24,6 @@ export const TableHeaderCell = ({ children, className = "" }) => (
   <th className={`py-4 font-medium text-left ${className}`}>{children}</th>
 );
 
-export const TableCell = ({ children, className = "" }) => (
-  <td className={`font-normal py-4 ${className}`}>{children}</td>
+export const TableCell = ({ children, colspan, className = "" }) => (
+  <td className={`font-normal py-4 ${className}`} colSpan={colspan ? colspan : 1}>{children}</td>
 );

@@ -2,64 +2,33 @@ import { Services } from "@/service";
 import useModalStore from "@/store/useModalStore";
 import { useValidators } from "./validators";
 
-export const useUserActions = (router) => {
+export const useTeamActions = (router) => {
   const { asPath, pathname, query } = router;
   const { openModal, closeModal, setLoading } = useModalStore();
   const {
     validationName,
-    validationEmail,
-    validationPhoneNumber,
-    validationUsername,
-    validationPassword,
-    validationSelect,
+    validationSelect
   } = useValidators();
 
-  const handleGender = (gender) => {
-    if (gender === 0) {
+  const handleCompetitionId = (competitionId) => {
+    if (competitionId === 0) {
       return {
-        id: gender,
-        name: "Male"
+        id: competitionId,
+        name: "False"
       };
     }
-    else if (gender === 1) {
+    else if (competitionId === 1) {
       return {
-        id: gender,
-        name: "Female"
-      };
-    }
-    else {
-      return {
-        id: gender,
-        name: ""
-      };
-    }
-  }
-
-  const handleRole = (role) => {
-    if (role === 0) {
-      return {
-        id: role,
-        name: "User"
-      };
-    }
-    else if (role === 1) {
-      return {
-        id: role,
-        name: "Admin"
-      };
-    }
-    else if (role === 2) {
-      return {
-        id: role,
-        name: "Super Admin"
+        id: competitionId,
+        name: "True"
       };
     }
   }
 
   const handleCreate = (data, callback) => {
     openModal(
-      "Create User",
-      "Are you sure you want to create this user?",
+      "Create Team",
+      "Are you sure you want to create this competition?",
       async () => {
         try {
           if (validationName(data?.name, 6)) {
@@ -75,64 +44,12 @@ export const useUserActions = (router) => {
             return;
           }
 
-          if (validationSelect(data?.role)) {
+          if (validationSelect(data?.competition_id)) {
             if (typeof callback === "function") {
               const callbackData = {
                 status: false,
-                name: 'role',
-                message: validationSelect(data?.role)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationEmail(data?.email)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'email',
-                message: validationEmail(data?.email)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationPhoneNumber(data?.phone_number)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'phone_number',
-                message: validationPhoneNumber(data?.phone_number)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationUsername(data?.username, 5)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'username',
-                message: validationUsername(data?.username, 5)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationPassword(data?.password, 8)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'password',
-                message: validationPassword(data?.password, 8)
+                name: 'competition_id',
+                message: validationSelect(data?.competition_id)
               }
               closeModal();
               callback(callbackData);
@@ -142,7 +59,7 @@ export const useUserActions = (router) => {
 
           setLoading(true);
           Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
-            .post(`/api/post/users/`, data)
+            .post(`/api/post/teams/`, data)
             .then((getResponse) => {
               const result = getResponse.data;
 
@@ -172,8 +89,8 @@ export const useUserActions = (router) => {
   const handleUpdate = (id, data, callback) => {
     console.log('update')
     openModal(
-      "Update User",
-      "Are you sure you want to change this user?",
+      "Update Team",
+      "Are you sure you want to change this competition?",
       async () => {
         try {
           if (validationName(data?.name, 6)) {
@@ -189,38 +106,12 @@ export const useUserActions = (router) => {
             return;
           }
 
-          if (validationSelect(data?.role)) {
+          if (validationSelect(data?.competition_id)) {
             if (typeof callback === "function") {
               const callbackData = {
                 status: false,
-                name: 'role',
-                message: validationSelect(data?.role)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationEmail(data?.email)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'email',
-                message: validationEmail(data?.email)
-              }
-              closeModal();
-              callback(callbackData);
-            }
-            return;
-          }
-
-          if (validationPhoneNumber(data?.phone_number)) {
-            if (typeof callback === "function") {
-              const callbackData = {
-                status: false,
-                name: 'phone_number',
-                message: validationPhoneNumber(data?.phone_number)
+                name: 'competition_id',
+                message: validationSelect(data?.competition_id)
               }
               closeModal();
               callback(callbackData);
@@ -230,7 +121,7 @@ export const useUserActions = (router) => {
 
           setLoading(true);
           Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
-            .put(`/api/put/users/` + id, data)
+            .put(`/api/put/teams/` + id, data)
             .then((getResponse) => {
               const result = getResponse.data;
 
@@ -259,13 +150,13 @@ export const useUserActions = (router) => {
 
   const handleSoftDelete = (id, callback) => {
     openModal(
-      "Delete User",
-      "Are you sure you want to delete this user?",
+      "Delete Team",
+      "Are you sure you want to delete this competition?",
       async () => {
         try {
           setLoading(true);
           Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
-            .put(`/api/put/users/delete/` + id)
+            .put(`/api/put/teams/delete/` + id)
             .then((getResponse) => {
               const result = getResponse.data;
 
@@ -290,13 +181,13 @@ export const useUserActions = (router) => {
 
   const handleRestore = (id, callback) => {
     openModal(
-      "Restore User",
-      "Are you sure you want to restore this user?",
+      "Restore Team",
+      "Are you sure you want to restore this competition?",
       async () => {
         try {
           setLoading(true);
           Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
-            .put(`/api/put/users/restore/` + id)
+            .put(`/api/put/teams/restore/` + id)
             .then((getResponse) => {
               const result = getResponse.data;
 
@@ -321,13 +212,13 @@ export const useUserActions = (router) => {
 
   const handleHardDelete = (id, callback) => {
     openModal(
-      'Delete User',
-      'Are you absolutely sure you want to permanently delete this user? This action cannot be undone and may cause inconsistencies in user data.',
+      'Delete Team',
+      'Are you absolutely sure you want to permanently delete this competition? This action cannot be undone and may cause inconsistencies in competition data.',
       async () => {
         try {
           setLoading(true);
           Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
-            .delete(`/api/delete/users/` + id)
+            .delete(`/api/delete/teams/` + id)
             .then((getResponse) => {
               const result = getResponse.data;
 
@@ -349,5 +240,5 @@ export const useUserActions = (router) => {
       });
   };
 
-  return { handleRole, handleGender, handleCreate, handleUpdate, handleSoftDelete, handleRestore, handleHardDelete };
+  return { handleCompetitionId, handleCreate, handleUpdate, handleSoftDelete, handleRestore, handleHardDelete };
 };

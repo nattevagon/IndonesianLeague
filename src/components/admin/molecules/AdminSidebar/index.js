@@ -69,6 +69,14 @@ const AdminSidebar = ({ children }) => {
                 Users
               </Link>
             </li>
+             <li className="text-primary-white text-[16px] w-full">
+              <Link
+                className="w-full p-4"
+                href={'/admin/news'}
+              >
+                News
+              </Link>
+            </li>
             <li className="text-primary-white text-[16px] w-full">
               <Link
                 className="w-full p-4"

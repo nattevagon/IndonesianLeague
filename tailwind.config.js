@@ -18,7 +18,8 @@ module.exports = {
         primary: {
           "white": "#F8F8F8",
           "black": "#161616",
-          "blue": "#185494"
+          "blue": "#185494",
+          "red": "#d10808",
         },
         secondary: {
           "white": "#F3F3F3",
@@ -27,10 +28,11 @@ module.exports = {
         },
         third: {
           "white": "#C6C6C6",
-          "black": "#575757",
+          "black": "#363534",
         },
         fourth: {
           "white": "#E7E7E7",
+          "black": "#000000",
         }
       },
     },

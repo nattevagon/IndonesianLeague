@@ -9,7 +9,12 @@ import TextField from "@/components/atoms/TextField";
 
 const CreateUser = () => {
   const router = useRouter();
-  const [detailData, setDetailData] = useState({})
+  const [detailData, setDetailData] = useState({});
+  const [fieldValid, setFieldValid] = useState({
+    status: false,
+    name: '',
+    message: ''
+  });
   const { handleCreate } = useUserActions(router);
 
   const handleChangeForm = (event) => {
@@ -19,14 +24,29 @@ const CreateUser = () => {
       ...prev,
       [name]: value,
     }));
+
+    setFieldValid(() => ({
+      status: false,
+      name: '',
+      message: ''
+    }));
   }
 
   return (
     <AdminTableLayout
       title="Create User"
       type="create"
-      onCreate={() => handleCreate(detailData, () => {
-        router.back();
+      onCreate={() => handleCreate(detailData, (result) => {
+        if (result.status) {
+          router.back();
+        }
+        else {
+          setFieldValid({
+            status: true,
+            name: result.name,
+            message: result.message
+          });
+        }
       })}
     >
       <div className="mt-4">
@@ -49,6 +69,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.name || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -68,9 +89,10 @@ const CreateUser = () => {
                     value={detailData?.gender || ""}
                     className="w-full bg-transparent p-2"
                     options={[
-                      { value: 0, label: "Male" },
-                      { value: 1, label: "Female" }
+                      { id: 0, name: "Male" },
+                      { id: 1, name: "Female" }
                     ]}
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -89,6 +111,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.date_of_birth || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -108,10 +131,11 @@ const CreateUser = () => {
                     value={detailData?.role || ""}
                     className="w-full bg-transparent p-2"
                     options={[
-                      { value: 0, label: "User" },
-                      { value: 1, label: "Admin" },
-                      { value: 2, label: "Super Admin" },
+                      { id: 0, name: "User" },
+                      { id: 1, name: "Admin" },
+                      { id: 2, name: "Super Admin" },
                     ]}
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -139,6 +163,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.email || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -157,6 +182,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.phone_number || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -175,6 +201,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.username || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>
@@ -193,6 +220,7 @@ const CreateUser = () => {
                     onChange={handleChangeForm}
                     value={detailData?.password || ""}
                     className="w-full bg-transparent p-2"
+                    fieldValid={fieldValid}
                   />
                 </div>
               </TableCell>

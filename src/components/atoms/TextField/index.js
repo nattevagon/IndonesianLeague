@@ -10,10 +10,18 @@ const TextField = ({
   onChange,
   className = "",
   label,
+  fieldValid,
+  onKeyDown,
   options = [],
 }) => {
-  const baseClass = `w-full text-[16px] p-2 input input-bordered bg-secondary-white dark:bg-secondary-black rounded-none border-third-white dark:border-third-black placeholder-third-black dark:placeholder-third-white ${className}`;
+  let baseClass = `w-full text-[16px] p-2 input input-bordered bg-secondary-white dark:bg-secondary-black rounded-none border-third-white dark:border-third-black placeholder-third-black dark:placeholder-third-white ${className}`;
   const [showPassword, setShowPassword] = useState(false);
+
+  if (fieldValid && (fieldValid?.status && (fieldValid?.name === name))) {
+    baseClass = baseClass + " !border-primary-red";
+  }
+
+  console.log(fieldValid)
 
   if (type === "textarea") {
     return (
@@ -24,8 +32,9 @@ const TextField = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          className={`${baseClass} textarea`}
+          className={`${baseClass} textarea min-h-[100px] max-h-[200px]`}
         />
+        {fieldValid && (fieldValid?.status && (fieldValid?.name === name)) && <p className="mt-1 text-[10px] text-primary-red">{fieldValid?.message}</p>}
       </div>
     );
   }
@@ -38,15 +47,16 @@ const TextField = ({
           name={name}
           value={value}
           onChange={onChange}
-          className={`select bg-secondary-white dark:bg-secondary-black ${baseClass}` +(value === "" ? " text-third-black dark:text-third-white" : "")}
+          className={`select bg-secondary-white dark:bg-secondary-black ${baseClass}` + (value === "" ? " text-third-black dark:text-third-white" : "")}
         >
           <option className="text-third-black dark:text-third-white" value="">{placeholder}</option>
           {options.map((opt, idx) => (
-            <option key={idx} value={opt.value}>
-              {opt.label}
+            <option key={idx} value={opt.id}>
+              {opt.name}
             </option>
           ))}
         </select>
+        {fieldValid && (fieldValid?.status && (fieldValid?.name === name)) && <p className="mt-1 text-[10px] text-primary-red">{fieldValid?.message}</p>}
       </div>
     );
   } else if (type === "calendar") {
@@ -63,6 +73,7 @@ const TextField = ({
             value={value}
             placeholder={placeholder}
             onChange={onChange}
+            onKeyDown={onKeyDown}
             className={baseClass}
           />
           {type === "password" && (
@@ -79,6 +90,7 @@ const TextField = ({
             </button>
           )}
         </div>
+        {fieldValid && (fieldValid?.status && (fieldValid?.name === name)) && <p className="mt-1 text-[10px] text-primary-red">{fieldValid?.message}</p>}
       </div>
     );
   }

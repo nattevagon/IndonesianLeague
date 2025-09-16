@@ -1,4 +1,5 @@
 import Button from "@/components/atoms/Button";
+import Loading from "@/components/atoms/Loading";
 import GeneralModal from "@/components/molecules/GeneralModal";
 import useModalStore from "@/store/useModalStore";
 import React from "react";
@@ -16,7 +17,8 @@ const AdminModal = () => {
       <div className="mt-4 flex items-center justify-end !gap-4">
         <Button
           onClick={() => onConfirm()}
-          label={loading ? "Processing..." : "Confirm"}
+          label="Confirm"
+          icon={loading ? Loading : ""}
         />
         <Button
           onClick={() => closeModal()}

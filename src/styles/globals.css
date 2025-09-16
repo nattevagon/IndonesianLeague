@@ -23,7 +23,7 @@ html:has(.drawer-toggle:checked) {
 /* --- Base calendar --- */
 .react-calendar {
     font-family: "Kanit", serif;
-    
+
     @apply max-w-[500px] border shadow-sm;
     @apply bg-secondary-white text-primary-black border-third-white;
     /* Light mode */
@@ -66,6 +66,12 @@ html:has(.drawer-toggle:checked) {
     @apply text-primary-black dark:text-primary-white;
 }
 
+.react-calendar__month-view__weekdays__weekday {
+    abbr {
+        text-decoration: none;
+    }
+}
+
 /* --- Tile (setiap tanggal) --- */
 .react-calendar__tile {
     @apply text-sm rounded-none p-2 bg-secondary-white hover:bg-primary-white text-primary-black transition-colors;
@@ -79,13 +85,13 @@ html:has(.drawer-toggle:checked) {
 /* Light mode */
 .react-calendar__tile.react-calendar__tile--active,
 .react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active {
-  @apply bg-third-white text-primary-black hover:bg-third-white font-bold;
+    @apply bg-third-white text-primary-black hover:bg-third-white font-bold;
 }
 
 /* Dark mode */
 .dark .react-calendar__tile.react-calendar__tile--active,
 .dark .react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active {
-  @apply bg-primary-black text-primary-white hover:bg-primary-black font-bold;
+    @apply bg-primary-black text-primary-white hover:bg-primary-black font-bold;
 }
 
 /* Today */
@@ -112,4 +118,104 @@ html:has(.drawer-toggle:checked) {
 
 .dark .react-calendar__tile:disabled {
     @apply text-secondary-black bg-secondary-black;
+}
+
+/* CMS */
+/* Light mode */
+.ce-block,
+.ce-header,
+.ce-paragraph,
+.content-render {
+    @apply font-normal text-primary-black py-0 my-0;
+}
+
+.ce-toolbox__button,
+.ce-toolbar__settings-btn,
+.ce-toolbar__plus {
+    @apply bg-secondary-black text-secondary-white hover:bg-secondary-black;
+}
+
+/* Dark mode */
+.dark .ce-block,
+.dark .ce-header,
+.dark .ce-paragraph {
+    @apply text-primary-white;
+}
+
+.dark .ce-toolbar__content,
+.dark .ce-settings {
+    background-color: #1f2937;
+    /* bg-gray-800 */
+    color: #f3f4f6;
+}
+
+.dark .ce-toolbox__button,
+.dark .ce-toolbar__settings-btn,
+.dark .ce-toolbar__plus {
+    @apply bg-secondary-white text-secondary-black hover:bg-secondary-white;
+}
+
+.cdx-search-field__input {
+    @apply text-primary-black;
+}
+
+.ce-block__content,
+.content-render {
+    p {
+        @apply font-normal text-primary-black py-0 !mt-0;
+    }
+
+    h1 {
+        font-size: xx-large;
+    }
+
+    h2 {
+        font-size: x-large;
+    }
+
+    h3 {
+        font-size: larger;
+    }
+
+    h4 {
+        font-size: medium;
+    }
+}
+
+.dark .ce-block__content,
+.dark .content-render {
+    p {
+        @apply font-normal text-primary-white py-0 !mt-0;
+    }
+}
+
+.ce-paragraph {
+    text-align: justify;
+}
+
+.ce-tune-alignment--left {
+    .ce-paragraph {
+        text-align: left;
+    }
+}
+
+.ce-tune-alignment--right {
+    .ce-paragraph {
+        text-align: right;
+    }
+}
+
+.ce-tune-alignment--center {
+    .ce-paragraph {
+        text-align: center;
+    }
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+    @apply max-w-none;
+}
+
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
 }

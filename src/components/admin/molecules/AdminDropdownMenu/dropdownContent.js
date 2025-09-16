@@ -1,12 +1,16 @@
-const AdminDropdownContent = ({ children }) => {
+const AdminDropdownContent = ({ children, className = "", type, menuClassName = "" }) => {
   return (
     <div
       tabIndex={0}
-      className="dropdown-content menu z-[2] left-1/2 -translate-x-1/2"
+      className={"dropdown-content menu z-[2]" + (className ? " " + className : "")}
     >
-      <ul className="bg-primary-blue w-52 shadow dropdown-content z-1">
-        {children}
-      </ul>
+      {type === 'menu' ?
+        <ul className={"w-52 shadow dropdown-content z-1" + (menuClassName ? ' ' + menuClassName : '')}>
+          {children}
+        </ul>
+        :
+        children
+      }
     </div>
   );
 };
