@@ -19,6 +19,7 @@ import {
   TableCell,
 } from "@/components/admin/atoms/Table"
 import { useNewsActions } from "@/utils/admin/newsActions"
+import Badge from "@/components/atoms/Badge"
 
 const News = () => {
   const router = useRouter();
@@ -165,7 +166,13 @@ const News = () => {
                     {item.title}
                   </Link>
                 </TableCell>
-                <TableCell>{item.tag}</TableCell>
+                <TableCell>
+                  <div className="flex flex-wrap gap-2">
+                    {item?.tag && JSON.parse(item?.tag).map((tag, i) => (
+                      <Badge key={i}>{tag}</Badge>
+                    ))}
+                  </div>
+                </TableCell>
                 <TableCell>{item.author}</TableCell>
                 <TableCell>{handleIsPublish(item.is_publish).name}</TableCell>
                 <TableCell className="flex items-center justify-center">

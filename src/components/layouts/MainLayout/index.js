@@ -11,7 +11,7 @@ const MainLayout = ({ children }) => {
         isTopTeamsList={isTopTeamsList}
         onSetTopTeamsList={(value) => setTopTeamsList(value)}
       />
-      <div className={isTopTeamsList ? "" : "lg:pt-[64px]"}>
+      <div className={isTopTeamsList ? "" : "pt-[58px] lg:pt-[64px]"}>
         {children}
       </div>
       <Footer />

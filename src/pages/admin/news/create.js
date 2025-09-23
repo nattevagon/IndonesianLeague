@@ -1,13 +1,15 @@
+import React, { useEffect, useState } from 'react';
 import AdminTableLayout from "@/components/admin/molecules/AdminTableLayout"
 import { useRouter } from "next/router";
-import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableRow } from "@/components/admin/atoms/Table";
 import TextField from "@/components/atoms/TextField";
 import dynamic from "next/dynamic";
 import { useNewsActions } from "@/utils/admin/newsActions";
 import { TabBody, TabButton, TabContent, TabControl, Tabs } from "@/components/admin/atoms/Tabs";
+import InputBadgesField from "@/components/atoms/InputBadgeField";
+import { Services } from "@/service";
 
-const AdminEditor = dynamic(() => import("@/components/admin/molecules/AdminEditor"), {
+const PostEditor = dynamic(() => import("@/components/molecules/PostEditor"), {
   ssr: false, // <- ini kunci supaya tidak jalan di server
 });
 
@@ -19,11 +21,22 @@ const CreateNews = () => {
     name: '',
     message: ''
   });
-  const [content, setContent] = useState();
+  const [tagsSuggestions, setTagsSuggestions] = useState();
+  const [isLoadingPage, setLoadingPage] = useState(false);
   const { handleCreate } = useNewsActions(router);
 
+  useEffect(() => {
+    handleGetSuggestions();
+  }, []);
+
+
   const handleChangeForm = (event) => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    let { value } = event.target;
+
+    if (name === 'tag' && value) {
+      console.log('value', value);
+    }
 
     setDetailData((prev) => ({
       ...prev,
@@ -44,6 +57,17 @@ const CreateNews = () => {
       ...prev,
       content: valueStringify
     }));
+  }
+
+  const handleGetSuggestions = () => {
+    setLoadingPage(true);
+    Services(process.env.NEXT_PUBLIC_LOCAL_SERVICE)
+      .get(`/api/get/news/tags/suggestions?`)
+      .then((res) => {
+        setTagsSuggestions(res?.data?.data);
+      })
+      .catch(console.error)
+      .finally(() => setLoadingPage(false));
   }
 
   console.log('detail', detailData);
@@ -142,14 +166,10 @@ const CreateNews = () => {
                     <TableCell className="flex items-center">
                       <div className="mr-4">:</div>
                       <div className="w-full">
-                        <TextField
-                          type="text"
-                          placeholder="Type a Tag"
+                        <InputBadgesField
                           name="tag"
+                          suggestions={tagsSuggestions}
                           onChange={handleChangeForm}
-                          value={detailData?.tag || ""}
-                          className="w-full bg-transparent p-2"
-                          fieldValid={fieldValid}
                         />
                       </div>
                     </TableCell>
@@ -196,7 +216,7 @@ const CreateNews = () => {
                 Content
               </div>
               <div className="shadow-sm bg-secondary-white dark:bg-secondary-black w-full">
-                <AdminEditor onRenderContent={(value) => handleChangeContent(value)} />
+                <PostEditor onRenderContent={(value) => handleChangeContent(value)} />
               </div>
             </div>
           </TabContent>

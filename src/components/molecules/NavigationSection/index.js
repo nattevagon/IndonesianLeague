@@ -175,7 +175,7 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
           <div className="flex items-center">
             <Image
               className={"invert brightness-0 mb-2 mr-4" + (isTopTeamsList ? ' mt-[-50px] w-[68px] drop-shadow-[0_1px_4px_rgba(0,0,1,1)]' : ' mt-2 w-[40px]') + " transition-all duration-100 ease-in-out"}
-              src={'https://assets.ligaindonesiabaru.com/assets/img/competition-logo/81.png'}
+              src={'https://assets.ligaindonesiabaru.com/assets/img/competition-logo/88.png'}
               width={100}
               height={100}
               alt="LeagueLogo"
@@ -242,14 +242,14 @@ function NavigationSection({ isTopTeamsList, onSetTopTeamsList }) {
                 <div tabIndex={0} className="dropdown-content menu z-[2] left-1/2 -translate-x-1/2">
                   <ul className="bg-[#262624] w-52 mt-2 shadow relative before:absolute before:content-[''] before:block before:border-[8px] before:border-transparent before:border-b-[#262624] before:top-[-16px] before:left-1/2 before:-ml-2">
                     <Link
-                      href={'/'}
+                      href={'/news'}
                     >
-                      <div className="w-full p-4 hover:bg-[#161616]">News List</div>
+                      <div className="w-full p-4 hover:bg-[#161616]">News</div>
                     </Link>
                     <Link
-                      href={'/'}
+                      href={'/gallery'}
                     >
-                      <div className="w-full p-4 hover:bg-[#161616]">Release</div>
+                      <div className="w-full p-4 hover:bg-[#161616]">Gallery</div>
                     </Link>
                   </ul>
                 </div>

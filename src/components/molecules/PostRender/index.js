@@ -7,7 +7,7 @@ const alignmentClass = {
   justify: "text-justify",
 };
 
-export default function AdminRenderPost({ content }) {
+export default function PostRender({ content }) {
   return (
     <div className="space-y-4 prose dark:prose-invert max-w-none content-render">
       {content?.blocks?.map((block, i) => {

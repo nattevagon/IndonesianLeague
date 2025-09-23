@@ -113,6 +113,23 @@ const AdminTableLayout = ({
                       </div>
                     </div>
                   }
+                  {/* {filter && filter?.tag &&
+                    <div className="">
+                      <p className="mb-2 font-medium">Tag</p>
+                      <div className="flex flex-col gap-2">
+                        {filter?.tag.map((item, i) => (
+                          <CheckboxField
+                            key={i}
+                            name="tag"
+                            label={item.label}
+                            value={item.value}
+                            checked={item.checked}
+                            onChange={(event) => handleFilter(event, item.value)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  } */}
                   {filter && filter?.competitionId &&
                     <div className="">
                       <p className="mb-2 font-medium">Competition</p>
@@ -146,7 +163,6 @@ const AdminTableLayout = ({
                   </div>
                 </AdminDropdownContent>
               </AdminDropdownMenu>
-
             </div>
           )}
           {(type === 'detail' || type === 'update') && data.is_deleted === 0 && (

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function AdminEditor({ onRenderContent, initialData }) {
+export default function PostEditor({ onRenderContent, initialData }) {
   const editorRef = useRef(null);
   const holderRef = useRef(null);
 

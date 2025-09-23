@@ -8,8 +8,9 @@ import { useNewsActions } from "@/utils/admin/newsActions";
 import dynamic from "next/dynamic";
 import safeJsonParse from "@/helper/safeJsonParse";
 import { TabBody, TabButton, TabContent, TabControl, Tabs } from "@/components/admin/atoms/Tabs";
+import InputBadgesField from "@/components/atoms/InputBadgeField";
 
-const AdminEditor = dynamic(() => import("@/components/admin/molecules/AdminEditor"), {
+const AdminEditor = dynamic(() => import("@/components/molecules/PostEditor"), {
   ssr: false,
 });
 
@@ -55,6 +56,8 @@ const UpdateNews = () => {
       ...prev,
       [name]: value,
     }));
+
+    console.log('name, value', name, value);
 
     setFieldValid(() => ({
       status: false,
@@ -180,14 +183,11 @@ const UpdateNews = () => {
                     <TableCell className="flex items-center">
                       <div className="mr-4">:</div>
                       <div className="w-full">
-                        <TextField
-                          type="text"
-                          placeholder="Type a Tag"
+                        <InputBadgesField
                           name="tag"
+                          initial={detailData?.tag ? safeJsonParse(detailData?.tag) : []}
+                          suggestions={["Malut United", "Persib", "Persija", "Bali United", "PSM Makassar", "Arema", "Persebaya", "Dewa United"]}
                           onChange={handleChangeForm}
-                          value={detailData?.tag || ""}
-                          className="w-full bg-transparent p-2"
-                          fieldValid={fieldValid}
                         />
                       </div>
                     </TableCell>

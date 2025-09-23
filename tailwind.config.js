@@ -43,6 +43,7 @@ module.exports = {
         md: '4rem', // Padding khusus untuk breakpoint md (768px)
       },
       screens: {
+        'xs': '440px',
         sm: '640px',
         md: '768px',
         lg: '1024px',
@@ -51,6 +52,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [
+    require('daisyui'),
+    require('@tailwindcss/line-clamp')
+  ],
   darkMode: "class"
 };

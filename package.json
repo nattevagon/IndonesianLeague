@@ -17,6 +17,7 @@
     "@editorjs/paragraph": "^2.11.7",
     "@editorjs/quote": "^2.7.6",
     "@heroicons/react": "^2.2.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.7.9",
     "dompurify": "^3.2.6",
     "editorjs-paragraph-with-alignment": "^3.0.0",

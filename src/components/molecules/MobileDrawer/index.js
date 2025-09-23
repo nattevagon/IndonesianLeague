@@ -104,17 +104,17 @@ const NavigationDrawer = () => {
                   <li className="text-primary-black dark:text-primary-white text-[16px] w-full">
                     <Link
                       className="w-full p-4"
-                      href={'/'}
+                      href={'/news'}
                     >
-                      News List
+                      News
                     </Link>
                   </li>
                   <li className="text-primary-black dark:text-primary-white text-[16px] w-full">
                     <Link
                       className="w-full p-4"
-                      href={'/'}
+                      href={'/gallery'}
                     >
-                      Release
+                      Gallery
                     </Link>
                   </li>
                 </ul>
@@ -136,7 +136,7 @@ const NavigationDrawer = () => {
                       className="w-full p-4"
                       href={'/'}
                     >
-                       U18 Liga 1
+                      U18 Liga 1
                     </Link>
                   </li>
                   <li className="text-primary-black dark:text-primary-white text-[16px] w-full">
@@ -144,7 +144,7 @@ const NavigationDrawer = () => {
                       className="w-full p-4"
                       href={'/'}
                     >
-                       U16 Liga 1
+                      U16 Liga 1
                     </Link>
                   </li>
                 </ul>

@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import AdminTableLayout from "@/components/admin/molecules/AdminTableLayout";
 import { Table, TableBody, TableCell, TableRow } from "@/components/admin/atoms/Table";
 import { useNewsActions } from "@/utils/admin/newsActions";
-import AdminRenderPost from "@/components/admin/molecules/AdminRenderPost";
 import { TabBody, TabButton, TabContent, TabControl, Tabs } from "@/components/admin/atoms/Tabs";
-import Image from "next/image";
+import PostRender from "@/components/molecules/PostRender";
+import Badge from "@/components/atoms/Badge";
 
 const DetailNews = () => {
   const router = useRouter();
@@ -104,7 +104,11 @@ const DetailNews = () => {
                     </TableCell>
                     <TableCell className="flex items-center">
                       <div className="mr-4">:</div>
-                      <div>{detailData?.tag}</div>
+                      <div className="flex flex-wrap gap-2">
+                        {detailData?.tag && JSON.parse(detailData?.tag).map((tag, i) => (
+                          <Badge key={i}>{tag}</Badge>
+                        ))}
+                      </div>
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -156,7 +160,7 @@ const DetailNews = () => {
                 Content
               </div>
               <div className="p-4 bg-secondary-white dark:bg-secondary-black">
-                <AdminRenderPost
+                <PostRender
                   content={detailData?.content ? JSON.parse(detailData.content) : null}
                 />
               </div>
